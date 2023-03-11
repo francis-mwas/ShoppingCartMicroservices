@@ -2,6 +2,7 @@ package com.fam.ProductService.service;
 
 
 import com.fam.ProductService.entity.Product;
+import com.fam.ProductService.exception.ProductServiceCustomExcepion;
 import com.fam.ProductService.model.ProductRequest;
 import com.fam.ProductService.model.ProductResponse;
 import com.fam.ProductService.repository.ProductRepository;
@@ -37,8 +38,8 @@ public class ProductServiceImpl implements ProductService{
         log.info("Get product by Id: {}", productId);
         Product product =
                 productRepository.findById(productId)
-                        .orElseThrow(()-> new RuntimeException("Product with the" +
-                                "supplied id does not exist"));
+                        .orElseThrow(()-> new ProductServiceCustomExcepion(
+                                "Product with the supplied id does not exist", "PRODUCT_NOT_FOUND"));
 //        convert to product response
         ProductResponse productResponse = new ProductResponse();
         BeanUtils.copyProperties(product, productResponse);
