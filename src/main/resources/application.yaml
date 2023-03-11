@@ -1,0 +1,15 @@
+server:
+  port:8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:5430/productsDB
+    username: postgres
+    password: mwas
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+#    url: jdbc:mysql://${DB_HOST:localhost}:3306/productdb
